@@ -31,7 +31,8 @@ public class SecurityConfig {
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http)
         throws Exception {
         return http.authorizeHttpRequests(authorizeRequest ->
-                authorizeRequest.anyRequest().authenticated()).
+                authorizeRequest.requestMatchers("/h2-console/**").permitAll()
+                .anyRequest().authenticated()).
                 formLogin(Customizer.withDefaults()).build();
     }
 
